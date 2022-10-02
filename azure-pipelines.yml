@@ -44,6 +44,6 @@ steps:
 
 - script: |
     pip install -r requirements_dev.txt
-    pytest test.py -s
+    pytest test.py -v
     docker logs fgcontainer
   displayName: 'tests'

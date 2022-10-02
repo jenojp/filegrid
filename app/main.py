@@ -10,7 +10,13 @@ async def explore(file_path: str):
     p = Path("./app/homedir/" + file_path)
     print(p)
     if p.is_dir():
-        return get_dir_contents(p)
+        try:
+            return get_dir_contents(p)
+        except:
+            raise HTTPException(
+                status_code=404,
+                detail="Unable to provide directory listing. This may be due to a permissions issue.",
+            )
     elif p.exists():
         try:
             return get_file_contents(p)
