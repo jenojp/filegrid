@@ -1,12 +1,14 @@
 # filegrid
-Simple API for exploring files, packaged with Docker
+[![Build Status](https://dev.azure.com/jenopizzaro/negspacy/_apis/build/status/jenojp.filegrid?branchName=main)](https://dev.azure.com/jenopizzaro/negspacy/_build/latest?definitionId=4&branchName=main)
+
+Simple API for exploring files, packaged with Docker.
 
 If given a directory, the API will return the contents of the directory, along with common attributes (e.g., owner, size, permissions).
 
 If given a file, the contents of the text file will be returned.
 
 ## Installation
-1. Ensure Docker Daemon is running
+1. Ensure Docker daemon is running
 2. Run installation script to create Docker image
 ```bash
 #from ~/filegrid
