@@ -18,17 +18,15 @@ strategy:
 pool:
   vmImage: $(imageName)
 
+variables:
+  tag: '$(Build.BuildId)'
+
 steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 
-variables:
-  tag: '$(Build.BuildId)'
-
-
-steps:
 - task: DockerInstaller@0
   displayName: Docker Installer
   inputs:
