@@ -41,9 +41,11 @@ variables:
 #         tags: |
 #           $(tag)
 
+steps:
 - script: |
     sh install.sh
   displayName: 'Build Docker Image'
 
 - script: |
-  sh run.sh /app/test
+    sh run.sh /app/test
+  displayName: 'Run API'
