@@ -40,6 +40,11 @@ variables:
 #         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
 #         tags: |
 #           $(tag)
+- task: DockerInstaller@0
+  displayName: Docker Installer
+  inputs:
+    dockerVersion: 17.09.0-ce
+    releaseType: stable
 
 steps:
 - script: |
