@@ -1,7 +1,7 @@
 import requests
 
 def make_request(suffix): 
-    url = "http://127.0.0.1:80"+suffix
+    url = "http://172.17.0.2:80"+suffix
     response = requests.request("GET", url)
     return response.json()
 
@@ -13,8 +13,10 @@ def test_file_request():
 
 def test_folder_request():
     res = make_request("//foo/")
+    assert res["type"] == "dir"
     assert res["results"][1].keys() >= {"name","dir","owner","size","permission"}
     assert type(res["results"][1]["name"]) is str
+    assert type(res["results"][1]["owner"]) is str
     assert type(res["results"][1]["dir"]) is bool
     assert type(res["results"][1]["size"]) is int
     assert type(res["results"][1]["permission"]) is int

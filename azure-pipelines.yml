@@ -43,8 +43,8 @@ steps:
   displayName: 'Run API'
 
 - script: |
-    docker ps -q | xargs -n 1 docker inspect --format '{{ .Name }} {{range .NetworkSettings.Networks}} {{.IPAddress}}{{end}}' | sed 's#^/##';
-  displayName: 'discover container ip'
+    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' fgcontainer
+  displayName: 'docker container ip'
 
 - script: |
     pip install -r requirements_dev.txt
