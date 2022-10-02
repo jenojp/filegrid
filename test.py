@@ -3,6 +3,7 @@ import requests
 def make_request(suffix): 
     url = "http://localhost:80"+suffix
     response = requests.request("GET", url)
+    print(response.text)
     return response.json()
 
 def test_file_request():
