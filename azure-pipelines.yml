@@ -5,6 +5,7 @@
 trigger:
 - main
 
+
 resources:
 - repo: self
 
@@ -38,9 +39,11 @@ steps:
   displayName: 'Build Docker Image'
 
 - script: |
-    sh run.sh /app/test
+    sh run.sh /$(pwd)/app/test
   displayName: 'Run API'
 
 - script: |
     pip install -r requirements_dev.txt
     pytest test.py -v
+    docker logs fgcontainer
+  displayName: 'tests'
