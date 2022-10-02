@@ -1,7 +1,7 @@
 import requests
 
 def make_request(suffix): 
-    url = "http://172.17.0.2:80"+suffix
+    url = "http://localhost:80"+suffix
     response = requests.request("GET", url)
     return response.json()
 

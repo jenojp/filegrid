@@ -39,12 +39,8 @@ steps:
   displayName: 'Build Docker Image'
 
 - script: |
-    sh run.sh /app/test
+    sh run.sh ./app/test
   displayName: 'Run API'
-
-- script: |
-    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' fgcontainer
-  displayName: 'docker container ip'
 
 - script: |
     pip install -r requirements_dev.txt
