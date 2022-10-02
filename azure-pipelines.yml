@@ -12,8 +12,8 @@ strategy:
   matrix:
     Linux:
       imageName: 'ubuntu-20.04'
-    Mac:
-      imageName: 'macos-11'
+    # Mac:
+    #   imageName: 'macos-11'
     Windows:
       imageName: 'windows-2019'
   maxParallel: 3
@@ -56,7 +56,12 @@ steps:
   displayName: Start Docker on macOS
 # Windows
 - powershell: |
-    Start-Service Docker
+    Uninstall-Package -Name docker -ProviderName DockerMSFTProvider
+    Get-VM WinContainerHost | Set-VMProcessor -ExposeVirtualizationExtensions $true
+    Install-Module DockerProvider
+    Install-Package Docker -ProviderName DockerProvider -RequiredVersion preview
+    [Environment]::SetEnvironmentVariable("LCOW_SUPPORTED", "1", "Machine")
+    Restart-Service docker
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   displayName: Start Docker on Windows
 
