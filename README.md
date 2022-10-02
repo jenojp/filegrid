@@ -56,3 +56,9 @@ Sample Response (File):
     "contents": "Sept 30 (Reuters) - The ruptures on the Nord Stream natural gas pipeline system under the Baltic Sea have led to what is likely the biggest single release of climate-damaging methane ever recorded, the United Nations Environment Programme said on Friday.\n\nA huge plume of highly concentrated methane, a greenhouse gas far more potent but shorter-lived than carbon dioxide, was detected in an analysis this week of satellite imagery by researchers associated with UNEP's International Methane Emissions Observatory, or IMEO, the organization said."
 }
 ```
+
+## Uninstall and cleanup
+Simple execute the following to teardown the docker container and remove the built image
+```bash
+sh cleanup.sh
+```
