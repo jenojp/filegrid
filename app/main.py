@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 @app.get("/{file_path:path}")
-async def explore(file_path: str):
+def explore(file_path: str):
     p = Path("./app/homedir/" + file_path)
     print(p)
     if p.is_dir():

@@ -16,7 +16,7 @@ sh install.sh
 ```
 
 ## Usage
-1. Run script, specifying root directory in
+1. Run script, specifying root directory (absolute link needed)
 ```bash
 run.sh /Users/tedison/Documents
 ```
@@ -57,8 +57,11 @@ Sample Response (File):
 }
 ```
 
+## API Documentation
+Navigate to `localhost:80/docs` to view Swagger API documentation.
+
 ## Uninstall and cleanup
-Simple execute the following to teardown the docker container and remove the built image
+Simply execute the following to teardown the docker container and remove the built image
 ```bash
 sh cleanup.sh
 ```

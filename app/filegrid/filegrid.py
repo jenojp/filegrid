@@ -25,8 +25,3 @@ def get_dir_contents(p: object) -> dict:
 def get_file_contents(p: object) -> dict:
     text = p.read_text()
     return {"type": "file", "contents": text}
-
-
-if __name__ == "__main__":
-    p = Path(sys.argv[1])
-    print(get_file_contents(p))
