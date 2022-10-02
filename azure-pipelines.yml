@@ -39,7 +39,7 @@ steps:
   displayName: 'Build Docker Image'
 
 - script: |
-    sh run.sh ./app/test
+    sh run.sh /$(pwd)/app/test
   displayName: 'Run API'
 
 - script: |
