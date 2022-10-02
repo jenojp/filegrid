@@ -5,6 +5,7 @@
 trigger:
 - main
 
+
 resources:
 - repo: self
 
@@ -48,3 +49,4 @@ steps:
 - script: |
     pip install -r requirements_dev.txt
     pytest test.py -v
+  displayName: 'tests'
