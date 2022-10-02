@@ -12,10 +12,6 @@ strategy:
   matrix:
     Linux:
       imageName: 'ubuntu-20.04'
-    # Mac:
-    #   imageName: 'macos-11'
-    Windows:
-      imageName: 'windows-2019'
   maxParallel: 3
 
 pool:
@@ -24,23 +20,6 @@ pool:
 variables:
   tag: '$(Build.BuildId)'
 
-# stages:
-# - stage: Build
-#   displayName: Build image
-#   jobs:
-#   - job: Build
-#     displayName: Build
-#     pool:
-#       vmImage: ubuntu-latest
-#     steps:
-#     - task: Docker@2
-#       displayName: Build an image
-#       inputs:
-#         command: build
-#         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-#         tags: |
-#           $(tag)
-
 
 steps:
 - task: DockerInstaller@0
@@ -48,22 +27,6 @@ steps:
   inputs:
     dockerVersion: 17.09.0-ce
     releaseType: stable
-  
-# macOS
-- bash: |
-    open -a Docker
-  condition: eq( variables['Agent.OS'], 'Darwin' )
-  displayName: Start Docker on macOS
-# Windows
-- powershell: |
-    Uninstall-Package -Name docker -ProviderName DockerMSFTProvider
-    Get-VM WinContainerHost | Set-VMProcessor -ExposeVirtualizationExtensions $true
-    Install-Module DockerProvider
-    Install-Package Docker -ProviderName DockerProvider -RequiredVersion preview
-    [Environment]::SetEnvironmentVariable("LCOW_SUPPORTED", "1", "Machine")
-    Restart-Service docker
-  condition: eq( variables['Agent.OS'], 'Windows_NT' )
-  displayName: Start Docker on Windows
 
 - script: |
     sh install.sh
