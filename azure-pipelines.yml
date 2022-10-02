@@ -8,22 +8,42 @@ trigger:
 resources:
 - repo: self
 
+strategy:
+  matrix:
+    Linux:
+      imageName: 'ubuntu-20.04'
+    Mac:
+      imageName: 'macos-11'
+    Windows:
+      imageName: 'windows-2019'
+  maxParallel: 3
+
+pool:
+  vmImage: $(imageName)
+
 variables:
   tag: '$(Build.BuildId)'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+# stages:
+# - stage: Build
+#   displayName: Build image
+#   jobs:
+#   - job: Build
+#     displayName: Build
+#     pool:
+#       vmImage: ubuntu-latest
+#     steps:
+#     - task: Docker@2
+#       displayName: Build an image
+#       inputs:
+#         command: build
+#         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+#         tags: |
+#           $(tag)
+
+- script: |
+    sh install.sh
+  displayName: 'Build Docker Image'
+
+- script: |
+  sh run.sh /app/test
