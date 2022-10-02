@@ -48,6 +48,17 @@ steps:
   inputs:
     dockerVersion: 17.09.0-ce
     releaseType: stable
+  
+# macOS
+- bash: |
+    open -a Docker
+  condition: eq( variables['Agent.OS'], 'Darwin' )
+  displayName: Start Docker on macOS
+# Windows
+- powershell: |
+    Start-Service Docker
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  displayName: Start Docker on Windows
 
 - script: |
     sh install.sh
