@@ -12,6 +12,12 @@ async def explore(file_path: str):
     if p.is_dir():
         return get_dir_contents(p)
     elif p.exists():
-        return get_file_contents(p)
+        try:
+            return get_file_contents(p)
+        except:
+            raise HTTPException(
+                status_code=404,
+                detail="Unable to read file. This may be due to a permissions issue or unexpected file type, expected text.",
+            )
     else:
         raise HTTPException(status_code=404, detail="Directory or File not found")

@@ -12,10 +12,17 @@ strategy:
   matrix:
     Linux:
       imageName: 'ubuntu-20.04'
+      python.version: '3.9'
   maxParallel: 3
 
 pool:
   vmImage: $(imageName)
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
 
 variables:
   tag: '$(Build.BuildId)'
@@ -35,3 +42,7 @@ steps:
 - script: |
     sh run.sh /app/test
   displayName: 'Run API'
+
+- script: |
+    pip install -r requirements_dev.txt
+    pytest test.py -v
