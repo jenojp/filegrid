@@ -16,11 +16,12 @@ sh install.sh
 ```
 
 ## Usage
-1. Run script, specifying root directory (absolute link needed)
+1. Clone repo
+2. Run script, specifying root directory (absolute link needed)
 ```bash
 run.sh /Users/tedison/Documents
 ```
-2. Make HTTP request
+3. Make HTTP request to view files or folders
 ```bash
 curl --request GET 'http://127.0.0.1:80//foo/foobar'
 ```
@@ -56,6 +57,32 @@ Sample Response (File):
     "contents": "Sept 30 (Reuters) - The ruptures on the Nord Stream natural gas pipeline system under the Baltic Sea have led to what is likely the biggest single release of climate-damaging methane ever recorded, the United Nations Environment Programme said on Friday.\n\nA huge plume of highly concentrated methane, a greenhouse gas far more potent but shorter-lived than carbon dioxide, was detected in an analysis this week of satellite imagery by researchers associated with UNEP's International Methane Emissions Observatory, or IMEO, the organization said."
 }
 ```
+4. Make HTTP request to add a folder.
+```bash
+curl --location --request POST 'http://localhost:80//foo/newfolder' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "dir": true
+}'
+```
+5. Make HTTP request to add a file.
+```bash
+curl --location --request POST 'http://localhost:80//foo/newfile' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "dir": false,
+    "contents":"this is a new file"
+}'
+```
+6. Make HTTP request to delete a file or folder. Modify "dir" parameter in body of request to be `true` (deleting a folder) or `false` (deleting a file).
+```bash
+curl --location --request DELETE 'http://localhost:80//foo/newfolder' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "dir": true
+}'
+```
+
 
 ## API Documentation
 Navigate to `localhost:80/docs` to view Swagger API documentation.
