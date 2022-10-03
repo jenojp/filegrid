@@ -2,7 +2,7 @@ import requests
 from pathlib import Path
 
 def make_request(suffix:str, method:str, headers:dict = {}, payload:dict = {}): 
-    url = "http://localhost:80/"+suffix
+    url = "http://localhost:8000/"+suffix
     response = requests.request(method, url, headers=headers, json=payload)
     return response.json(), response.status_code
 
