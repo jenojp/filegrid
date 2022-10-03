@@ -16,11 +16,12 @@ sh install.sh
 ```
 
 ## Usage
-1. Run script, specifying root directory (absolute link needed)
+1. Clone repo
+2. Run script, specifying root directory (absolute link needed)
 ```bash
 run.sh /Users/tedison/Documents
 ```
-2. Make HTTP request
+3. Make HTTP request
 ```bash
 curl --request GET 'http://127.0.0.1:80//foo/foobar'
 ```

@@ -25,3 +25,19 @@ def get_dir_contents(p: object) -> dict:
 def get_file_contents(p: object) -> dict:
     text = p.read_text()
     return {"type": "file", "contents": text}
+
+def add_folder(p: object) -> dict:
+    p.mkdir()
+    return {"message":"folder successfully created"}
+
+def add_file(p: object, contents: str) -> dict:
+    p.write_text(contents)
+    return {"message":"file successfully created"}
+
+def delete_folder(p: object) -> dict:
+    p.rmdir()
+    return {"message":"folder successfully deleted"}
+
+def delete_file(p: object) -> dict:
+    p.unlink()
+    return {"message":"file successfully deleted"}
