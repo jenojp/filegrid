@@ -23,7 +23,7 @@ run.sh /Users/tedison/Documents
 ```
 3. Make HTTP request to view files or folders
 ```bash
-curl --request GET 'http://127.0.0.1:80//foo/foobar'
+curl --request GET 'http://localhost:80//foo/foobar'
 ```
 Note: `/foo/foobar` is a file path. You must supply `//` between the `http://address:port` and the `{file path}` for the API to properly recognize your path.
 
