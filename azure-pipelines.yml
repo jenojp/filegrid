@@ -43,7 +43,14 @@ steps:
   displayName: 'Run API'
 
 - script: |
+    sh cleanup.sh
+  displayName: 'Teardown Docker'
+
+- script: |
     pip install -r requirements_dev.txt
+    mv app/homedir app/homedir2
+    mv app/test app/homedir
+    uvicorn app.main:app --port 80
     pytest test.py -s -v
     docker logs fgcontainer
   displayName: 'tests'
