@@ -50,7 +50,8 @@ steps:
     pip install -r requirements_dev.txt
     mv app/homedir app/homedir2
     mv app/test app/homedir
-    uvicorn app.main:app --port 8000
+    nohup uvicorn app.main:app --port 8000 &
     pytest test.py -s -v
     docker logs fgcontainer
-  displayName: 'tests'
+  displayName: 'start up local server for tests'
+  
